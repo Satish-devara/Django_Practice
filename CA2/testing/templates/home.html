@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background-color: #222;
+            color: white;
+        }
+
+        .light {
+            background-color: white;
+            color: black;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="{{theme}}">
+    <h1>Django Cokie theme</h1>
+
+    <h3>Current theme : {{theme}}</h3>
+    <a href="{% url 'set_theme' %}?theme=dark"><button>Dark Mode</button></a>
+    <a href="{% url 'set_theme' %}?theme=light">
+        <button>Light Mode</button>
+    </a>
+
+    <br><br>
+    <a href="{% url 'read_theme' %}">
+        <button>Read Theme</button>
+    </a>
+
+    <a href="{% url 'clear_theme' %}">
+        <button>Clear Theme</button>
+    </a>
+
+</body>
+</html>

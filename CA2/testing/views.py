@@ -83,7 +83,38 @@ def update_book(request, id):
     })
 
 
+def set_theme(request):
+    theme = request.GET.get('theme', 'dark')
+
+    if theme not in ['light', 'dark']:
+        theme='light'
 
 
+    resp = redirect('home')
+    resp.set_cookie('theme', theme, max_age=3600, httponly=True)
+    return resp
+
+
+def read_theme(request):
+    theme = request.COOKIES.get('theme', 'light')
+    return HttpResponse(f'Theme:{theme}')
+
+def clear_theme(request):
+    resp = redirect('home')
+    resp.delete_cookie('theme')
+    return resp
+
+def home(request):
+    theme = request.COOKIES.get('theme', 'light')
+    return render(request, 'home.html', {'theme':theme})
 
 # Create your views here.
+
+def visit_counter(request):
+    count = request.session.get('visits', 0)+1
+    request.session['visits'] = count
+    return HttpResponse(f'Visits: {count}')
+
+def reset(request):
+    request.session.flush()
+    return HttpResponse('Cleared')
