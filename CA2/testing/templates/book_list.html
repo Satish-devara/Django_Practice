@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>All Books</h1>
+
+    <a href="{% url 'add_book' %}">Add New Book</a>
+    <hr>
+
+    {% for book in books %}
+        <h3>{{book.title}}</h3>
+        <p>Author: {{book.author.name}}</p>
+        <p>Price: {{ book.price | default:"Not specified"}}</p>
+
+        <p>
+            {% if book.in_stock %}
+                Available
+            {% else %}
+                Not in in_stock
+            {% endif %}
+
+        </p>
+
+        <a href="{% url 'book_detail' book.id %}">View Details</a>
+        <a href="{% url 'delete_book' book.id %}">Delete</a>
+        <a href="{% url 'update_book' book.id %}">
+        Update
+        </a>
+        <hr>
+
+        {% empty %}
+        <p>No books.available</p>
+        {% endfor %}
+</body>
+</html>

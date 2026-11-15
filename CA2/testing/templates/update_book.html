@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Book</title>
+</head>
+<body>
+
+    <h1>Update Book</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Book Title:</label>
+        <input type="text" name="title"
+               value="{{ book.title }}" required>
+        <br><br>
+
+        <label>Author:</label>
+        <select name="author" required>
+
+            {% for author in authors %}
+                <option value="{{ author.id }}"
+                    {% if author.id == book.author.id %}
+                        selected
+                    {% endif %}>
+                    {{ author.name }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>Price:</label>
+        <input type="number" name="price"
+               step="0.01" value="{{ book.price|default_if_none:'' }}">
+        <br><br>
+
+        <label>In Stock:</label>
+        <input type="checkbox" name="in_stock"
+               {% if book.in_stock %}checked{% endif %}>
+        <br><br>
+
+        <button type="submit">Update Book</button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'book_list' %}">Back to Books</a>
+
+</body>
+</html>

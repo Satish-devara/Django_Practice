@@ -1,0 +1,11 @@
+{% include "./header.html" %}
+<ul>
+    <h2>
+        Teacher
+    </h2>
+
+    {% for i in data1 %}
+    <li>{{i.name}}   {{i.department}}</li>
+   
+    {% endfor %}
+</ul>

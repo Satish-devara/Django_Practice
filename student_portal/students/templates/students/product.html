@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+
+    <style>
+        form {
+            width: 40%;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Add Product</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Description:</label>
+        <textarea name="description" rows="5" required></textarea>
+
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" required>
+
+        <label>
+            <input type="checkbox" name="available" checked>
+            Available
+        </label>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+</body>
+</html>

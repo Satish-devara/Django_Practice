@@ -1,0 +1,9 @@
+{% extends "accounts/base.html" %}{% block content %}
+<h1>Student Dashboard</h1>
+<p>Welcome, <b>{{ request.user.username}}</b></p>
+<p>You can see this page because you are loogged in</p>
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit"> Logout</button>
+</form>
+{% endblock %}

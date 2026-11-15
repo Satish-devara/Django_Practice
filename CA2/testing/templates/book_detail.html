@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+</head>
+<body>
+
+    <h1>Book Details</h1>
+
+    <h2>{{ book.title }}</h2>
+
+    <p>Author: {{ book.author.name }}</p>
+    <p>Email: {{ book.author.email }}</p>
+    <p>Price: {{ book.price|default:"Not specified" }}</p>
+
+    <p>
+        In Stock:
+        {% if book.in_stock %}
+            Yes
+        {% else %}
+            No
+        {% endif %}
+    </p>
+
+    <p>Created: {{ book.created }}</p>
+    <p>Updated: {{ book.updated }}</p>
+
+    <a href="{% url 'book_list' %}">Back to Books</a>
+
+</body>
+</html>
