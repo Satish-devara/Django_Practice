@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Update student</h1>
+
+    <form method="POST">
+        {% csrf_token%}
+
+        <label>Student name:</label>
+        <input type="text" name="name" value="{{student.name}}">
+
+        <br><br>
+
+        <label>Student roll_no:</label>
+        <input type="text" name="roll_no" value="{{student.roll_no}}">
+
+         <br><br>
+
+         <label>Student cgpa:</label>
+        <input type="text" name="cgpa" value="{{student.cgpa}}">
+   <br><br>
+
+        <label >Student Department</label>
+        <select name="department" >
+
+            {% for department in departments%}
+            <option value="{{department.id}}">
+                {% if department.id == student.Department.id %}
+                selected
+                {% endif %}
+
+                {{department.name}}
+
+            </option>
+            {% endfor %}
+        </select>
+         <button type="submit">Update Department</button>
+
+    </form>
+</body>
+</html>

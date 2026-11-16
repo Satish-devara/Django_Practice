@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students_list</title>
+</head>
+<body>
+
+     <a href="{% url 'add_student' %}">Add New Student</a>
+    {% for student in students %}
+        <p>Name : {{student.name}}</p>
+        <p>Roll no: {{student.roll_no}}</p>
+        <p>Cgpa: {{student.cgpa}}</p>
+        <p>Department: {{student.Department.name}}</p>
+
+        <br>
+
+        <a href="{% url 'update_detail' student.id %}">Update</a>
+        <a href="{% url 'delete_detail' student.id %}">Delete</a>
+        {% endfor %}
+</body>
+</html>

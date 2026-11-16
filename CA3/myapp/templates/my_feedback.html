@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}My Feedback{% endblock %}
+{% block content %}
+<h2>My submitted feedback</h2>
+{% for item in feedback_list %}
+  <div class="entry">
+    <strong>{{ item.teacher.name }}</strong> — {{ item.teacher.subject }}<br>
+    <span class="muted">{{ item.created_at|date:"d M Y, h:i A" }}</span>
+    <p><strong>Rating:</strong> {{ item.rating }}/5</p>
+    <p>{{ item.comments|linebreaksbr }}</p>
+  </div>
+{% empty %}
+  <p>You have not submitted any feedback yet.</p>
+  <a class="btn" href="{% url 'submit_feedback' %}">Submit feedback</a>
+{% endfor %}
+{% endblock %}

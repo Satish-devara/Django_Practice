@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Student Login{% endblock %}
+{% block content %}
+<h2>Student login</h2>
+<p class="muted">Sign in with the account provided by your administrator.</p>
+<form method="post">{% csrf_token %}
+  {{ form.non_field_errors }}
+  <label for="{{ form.username.id_for_label }}">Username</label>{{ form.username }}
+  <label for="{{ form.password.id_for_label }}">Password</label>{{ form.password }}
+  {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+  <button type="submit">Login</button>
+</form>
+{% endblock %}
